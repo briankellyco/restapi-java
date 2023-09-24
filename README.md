@@ -10,7 +10,7 @@ An innovative minimalistic exception handling strategy:
 * The code in message approach forces you as a developer to consider what the consumer of your API receives.
 * I believe teams will love the simplicity at a technical level.
 
-And not forgetting:
+And:
 
 * A set of best practice design decisions applied throughout the codebase.
 * For brevity, I don't detail the design decisions here. I am however always pleased to discuss in person.
