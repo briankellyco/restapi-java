@@ -4,10 +4,16 @@
 
 A REST API showcasing a modern Spring Boot / Java 17 microservice notable for:
 
-* a minimalistic exception handling strategy. I designed this approach and teams may like to adopt for its simplicity.
-* a set of best practice design decisions applied throughout the codebase.
+An innovative minimalistic exception handling strategy:
 
-For brevity, I don't explain the majority of design decisions taken. But I am always pleased to explain them in person.
+* I designed the concept of explicitly setting the REST response code in the message.
+* The code in message approach forces you as a developer to consider what the consumer of your API receives.
+* I believe teams will love the simplicity at a technical level and the focus on the API consumer.
+
+And not forgetting:
+
+* A set of best practice design decisions applied throughout the codebase.
+* For brevity, I don't detail the design decisions here. I am however always pleased to discuss in person.
 
 ## Run the application
 1.  Checkout the github repo, import into your IDE and run using Java 17. Instructions for Intellij are below.
