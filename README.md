@@ -2,9 +2,7 @@
 
 ![stability-badge](https://img.shields.io/badge/stability-Stable-success.svg?style=for-the-badge)
 
-REST API example written in Java.
-
-It showcases a modern Spring Boot / Java 17 microservice notable for:
+A REST API showcasing a modern Spring Boot / Java 17 microservice notable for:
 
 * a minimalistic exception handling strategy. I designed this approach and teams may like to adopt for its simplicity.
 * a set of best practice design decisions applied throughout the codebase.
