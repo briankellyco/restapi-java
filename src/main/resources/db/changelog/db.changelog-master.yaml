@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: briankelly
+      changes:
+        - sqlFile:
+            dbms: h2
+            encoding: utf8
+            endDelimiter:
+            path: 001-create-schema.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+        - sqlFile:
+            dbms: h2
+            encoding: utf8
+            endDelimiter:
+            path: 002-init-data.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true

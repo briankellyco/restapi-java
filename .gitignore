@@ -1,0 +1,25 @@
+# gitignore rules: https://labs.consol.de/de/development/git/2017/02/22/gitignore.html
+### IntelliJ ###
+build/
+out/
+*.iml
+
+
+### DOT files ###
+# ignore all . files and . folders from being checked in e.g don't commit to repo .idea/
+.*
+# allow .gitignore file
+!/.gitignore
+!/.zappr.yaml
+
+## node - typescript - javascript
+node_modules/
+dist/
+server/src/*.js
+server/src/*.d.ts
+
+
+# misc
+*.log
+*.sqlite
+*.svg

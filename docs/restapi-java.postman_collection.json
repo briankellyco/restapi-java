@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "1c6e9408-d6ec-d3cb-c1fc-6a32725f64fb",
+		"name": "restapi-java",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "834327"
+	},
+	"item": [
+		{
+			"name": "POST http://localhost:8080/charge-sessions",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"vehicleId\":10, \"chargePointId\":3}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/charge-sessions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"charge-sessions"
+					]
+				},
+				"description": "curl -X POST --header \"Content-type: application/json\" --header \"Accept: application/json\"  --data '{\"name\":\"winifred\", \"email\":\"winifred@gmail.com\", \"room\":\"88\"}' http://localhost:9000/hotel/guest"
+			},
+			"response": []
+		},
+		{
+			"name": "GET http://localhost:8080/charge-detail-records?vehicleId=10&sort=-startTime",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9000/charge-detail-records?vehicleId=10&sort=-startTime",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"charge-detail-records"
+					],
+					"query": [
+						{
+							"key": "vehicleId",
+							"value": "10"
+						},
+						{
+							"key": "sort",
+							"value": "-startTime"
+						}
+					]
+				},
+				"description": "curl -X GET --header \"Content-type: application/json\" --header \"Accept: application/json\"  http://localhost:9000/hotel/"
+			},
+			"response": []
+		},
+		{
+			"name": "GET http://localhost:8080/charge-detail-records/{id}",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/charge-sessions/20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"charge-sessions",
+						"20"
+					]
+				},
+				"description": "curl -X GET --header \"Content-type: application/json\" --header \"Accept: application/json\"  http://localhost:9000/hotel/"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT http://localhost:8080/charge-detail-records/{id}",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/charge-sessions/23",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"charge-sessions",
+						"23"
+					]
+				},
+				"description": "curl -X GET --header \"Content-type: application/json\" --header \"Accept: application/json\"  http://localhost:9000/hotel/"
+			},
+			"response": []
+		}
+	]
+}
