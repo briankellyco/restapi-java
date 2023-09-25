@@ -70,11 +70,11 @@ Intellij project using JDK 17+. Do following to avoid compilation issues:
 
 The use case is an example of a generic 1:M relationship between different entities stored in a database. 
 
-Almost all business problems can be modelled as a 1:M relationship.
+All business problems involve modelling a 1:M relationship and this example is no different. 
 
-The use case chosen for this API example is:
+The use case chosen is:
 
-* I'm a car driver (with a vehicle) and I want to charge my vehicle (charging session) at a charging point.
+* I'm a driver (with a vehicle) and I want to charge my vehicle (session) at a charging point.
 * I want to record each charging session and the associated cost.
 * I want to provide an API that enables create, read, update and delete (CRUD) on the data. 
 
