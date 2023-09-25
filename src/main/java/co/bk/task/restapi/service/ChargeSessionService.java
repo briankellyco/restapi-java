@@ -185,16 +185,23 @@ public class ChargeSessionService {
                 BigDecimal durationChargeSessionInHours = new BigDecimal(chargeSession.getEndTime() - chargeSession.getStartTime())
                         .divide(new BigDecimal(MILLISECONDS_IN_HOUR), new MathContext(18, RoundingMode.HALF_EVEN));
 
-                BigDecimal theoreticalEnergyDeliveredDuringSession = new BigDecimal(chargingPowerKw).multiply(
+                BigDecimal maxEnergyDeliveredDuringSession = new BigDecimal(chargingPowerKw).multiply(
                         durationChargeSessionInHours, new MathContext(18, RoundingMode.HALF_EVEN)); // KwH
 
                 BigDecimal energyRequiredByBatteryToFullyCharge = new BigDecimal(String.valueOf(batteryCapacity * (100 - batteryLevelPercentAtStart) / 100)); // KwH
 
-                if (energyRequiredByBatteryToFullyCharge.compareTo(theoreticalEnergyDeliveredDuringSession) > 0) {
-                    // Battery was not fully charged at the end of the session
-                    energyConsumedKwh = theoreticalEnergyDeliveredDuringSession;
-                } else {
-                    // Battery was fully charged at the end of the session
+                // Customer billed only for the energy consumed.
+                if (energyRequiredByBatteryToFullyCharge.compareTo(maxEnergyDeliveredDuringSession) > 0) {
+                    // Charger not connected long enough to fully charge the battery.
+                    // Battery not fully charged
+                    energyConsumedKwh = maxEnergyDeliveredDuringSession;
+                } else if (energyRequiredByBatteryToFullyCharge.compareTo(maxEnergyDeliveredDuringSession) < 0) {
+                    // Charger was connected longer than necessary in order to fully charge the battery.
+                    // Battery is fully charged.
+                    energyConsumedKwh = energyRequiredByBatteryToFullyCharge;
+                } else if (energyRequiredByBatteryToFullyCharge.compareTo(maxEnergyDeliveredDuringSession) == 0) {
+                    // Charger was connected for exactly the right length of time in order to fully charge the battery.
+                    // Battery is fully charged.
                     energyConsumedKwh = energyRequiredByBatteryToFullyCharge;
                 }
 
@@ -204,6 +211,8 @@ public class ChargeSessionService {
 
                 BigDecimal totalCost = costOfPower.add(MINIMUM_CONNECTION_FEE);
                 chargeSession.setTotalCost(totalCost);
+
+                // Assumption is that Battery Level for the vehicle record is updated by some other process
 
             } else {
                 // Battery was full when the session started
