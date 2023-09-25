@@ -67,19 +67,21 @@ Intellij project using JDK 17+. Do following to avoid compilation issues:
 
 ## What is the use case for this microservice?
 
-The use case is an example of a generic 1:M relationship between different entities stored in a database. 
+The use case is create a generic REST api microservice that can be used to model a standard business problem. 
 
-All business problems involve modelling a 1:M relationship and this example is no different. 
+All business problems involve some sort of 1:M relationship or M:N relationship.
 
-The use case chosen is:
+For example:
+* a factory produces many cars and wants to track the time taken at each stage of the production line
+* a farmer has many sheep in his field and wants to track the health of each sheep
 
-* I'm a driver (with a vehicle) and I want to charge my vehicle (session) at a charging point.
-* I want to record each charging session and the associated cost.
-* I want to provide an API that enables create, read, update and delete (CRUD) on the data. 
+The business case for this microservice is:
 
-REST endpoints provided are:
+* I'm a driver (with a vehicle) and I want to track the cost of charging my vehicle (session) at a charging point. 
 
-1. Create charging record.
+REST endpoints to provide are:
+
+1. Create a charging record.
 2. Get a charging record by id.
 3. Find all charging records for given vehicle.
 
