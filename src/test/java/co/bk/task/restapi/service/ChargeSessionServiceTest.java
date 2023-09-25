@@ -11,9 +11,9 @@ import co.bk.task.restapi.service.dto.ChargeSessionDto;
 import co.bk.task.restapi.util.SortParameterEnum;
 import co.bk.task.restapi.web.exceptionhandling.ApplicationException;
 import org.apache.commons.compress.utils.Lists;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -36,7 +36,7 @@ public class ChargeSessionServiceTest {
 
     private static Long CHARGE_POINT_ID = 4001L;
 
-    @InjectMocks
+
     ChargeSessionService serviceUnderTest;
 
     @Mock
@@ -50,6 +50,12 @@ public class ChargeSessionServiceTest {
 
     @Mock
     ChargeSessionConverter chargeSessionConverter;
+
+    @BeforeEach
+    void setup() {
+        // Manual instantiation instead of using @InjectMocks as a value needs to be assigned to the @Value annotated field (via constructor using Lombok)
+        serviceUnderTest = new ChargeSessionService(Double.valueOf("0.50"), chargeSessionListRepository, vehicleRepository, chargePointRepository, chargeSessionConverter);
+    }
 
     @Test
     void testGetChargeSessionsForVehicleSorted() {

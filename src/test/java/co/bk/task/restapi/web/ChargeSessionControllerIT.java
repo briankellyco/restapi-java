@@ -68,7 +68,7 @@ public class ChargeSessionControllerIT {
     }
 
     @Test
-    void getUrl_chargeSesssions_for_vehicleId_success() {
+    void get_chargeSesssions_for_vehicleId_success() {
 
         List<Vehicle> vehicleList = vehicleRepository.saveAll(List.of(
                 Vehicle.createVehicle("20-WW-11227"),

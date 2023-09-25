@@ -11,6 +11,7 @@ import co.bk.task.restapi.util.EndTimeComparator;
 import co.bk.task.restapi.util.SortParameterEnum;
 import co.bk.task.restapi.repository.ChargeSessionListRepository;
 import co.bk.task.restapi.web.exceptionhandling.ApplicationException;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,18 +38,14 @@ public class ChargeSessionService {
     public static final Long MILLISECONDS_IN_HOUR = 60 * 60 * 1000L;
 
     @Value("${application.costOfPowerPerKwh}")
-    private Double costOfPowerPerKwh = 1.0;
+    private final Double costOfPowerPerKwh;
 
-    //@Autowired
     private final ChargeSessionListRepository chargeSessionListRepository;
 
-    //@Autowired
     private final VehicleRepository vehicleRepository;
 
-    // @Autowired
     private final ChargePointRepository chargePointRepository;
 
-    //@Autowired
     private final ChargeSessionConverter chargeSessionConverter;
 
     public List<ChargeSessionDto> getChargeSessionsForVehicleSorted(Long vehicleId, SortParameterEnum sortedBy) {
