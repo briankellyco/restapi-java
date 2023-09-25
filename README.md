@@ -4,7 +4,7 @@
 
 A REST API showcasing a modern Spring Boot / Java 17 microservice. Key features include:
 
-An innovative minimalistic exception handling strategy:
+A minimalistic exception handling strategy:
 
 * I designed the concept of explicitly setting the REST response code in the message.
 * The code in message approach requires you as a developer to think about the response code for every exception.
