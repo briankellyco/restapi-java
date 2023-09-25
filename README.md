@@ -14,7 +14,7 @@ An innovative minimalistic exception handling strategy:
 And:
 
 * A set of best practice design decisions applied throughout the codebase.
-* I have not detailed the design decisions. I am however always pleased to discuss in person.
+* I am always pleased to discuss these in person.
 
 ## Run the application
 1.  Checkout the github repo, import into your IDE and run using Java 17. Instructions for Intellij are below.
