@@ -18,7 +18,7 @@ And:
 ## Run the application
 1.  Checkout the github repo, import into your IDE and run using Java 17. Instructions for Intellij are below.
 2.  Verify the test dataset that the application comes with is loaded by inspecting the database.
-    The database is accessible at http://localhost:8080/h2-console. 
+    The database is accessible at http://localhost:8080/h2-ui. 
 3.  Call the REST API using curl or Postman:
 
     * Postman collection is available at /docs/restapi-java.postman_collection.json
