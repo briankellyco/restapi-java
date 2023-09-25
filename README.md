@@ -2,18 +2,19 @@
 
 ![stability-badge](https://img.shields.io/badge/stability-Stable-success.svg?style=for-the-badge)
 
-A REST API showcasing a modern Spring Boot / Java 17 microservice notable for:
+A REST API showcasing a modern Spring Boot / Java 17 microservice. Key features include:
 
 An innovative minimalistic exception handling strategy:
 
 * I designed the concept of explicitly setting the REST response code in the message.
-* The code in message approach forces you as a developer to consider what the consumer of your API receives.
-* I believe teams will love the simplicity at a technical level.
+* The code in message approach requires you as a developer to think about the response code for every exception.
+* The design allows you to centralise all application error codes and descriptions in one place.
+* The simplicity of the design reduces the amount of code required to handle exceptions.
 
 And:
 
 * A set of best practice design decisions applied throughout the codebase.
-* For brevity, I don't detail the design decisions here. I am however always pleased to discuss in person.
+* I have not detailed the design decisions. I am however always pleased to discuss in person.
 
 ## Run the application
 1.  Checkout the github repo, import into your IDE and run using Java 17. Instructions for Intellij are below.
