@@ -6,8 +6,9 @@ import co.bk.task.restapi.model.Vehicle;
 import co.bk.task.restapi.repository.ChargePointRepository;
 import co.bk.task.restapi.repository.ChargeSessionListRepository;
 import co.bk.task.restapi.repository.VehicleRepository;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,9 +28,12 @@ import java.util.List;
 
 import static io.restassured.RestAssured.when;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.DEFINED_PORT;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
 
 @SpringBootTest(webEnvironment = DEFINED_PORT, properties = {
         "spring.liquibase.enabled=false"
@@ -61,11 +65,6 @@ public class ChargeSessionControllerIT {
 
     @Autowired
     private ChargeSessionListRepository chargeSessionListRepository;
-
-    @BeforeEach
-    void beforeEach() {
-        vehicleRepository.deleteAll();
-    }
 
     @Test
     void get_chargeSesssions_for_vehicleId_success() {
@@ -99,4 +98,98 @@ public class ChargeSessionControllerIT {
 
         assertThat(vehicleId, equalTo(vehicleWithChargeSession.getId()));
     }
+
+    @Test
+    void get_chargeSesssions_for_vehicleId_fail_not_found() {
+
+        String vehicleId = "1234";
+
+        Response response = when().get(String.format("/charge-sessions?vehicleId=%s&sort=endTime", vehicleId));
+
+        response.then().assertThat()
+                .statusCode(404)
+                .body("application_code", is("RESTAPI-0002"));
+    }
+
+    @Test
+    void post_create_chargeSesssion_success() {
+
+        List<Vehicle> vehicleList = vehicleRepository.saveAll(List.of(
+                Vehicle.createVehicle("20-WW-11227"),
+                Vehicle.createVehicle("23-D-45893")
+        ));
+
+        List<ChargePoint> chargePointList = chargePointRepository.saveAll(List.of(
+                ChargePoint.createChargePoint("charger-model-x123", 50.0),
+                ChargePoint.createChargePoint("charger-model-PP234", 7.0)
+        ));
+
+        Vehicle vehicle = vehicleList.get(0);
+        ChargePoint chargePoint = chargePointList.get(0);
+
+        String requestBody = "{"
+                + "\"vehicleId\": \"" + vehicle.getId().toString() + "\","
+                + "\"chargePointId\": \"" + chargePoint.getId().toString() + "\""
+                + "}";
+
+        String locationHeader = RestAssured.given()
+                .contentType(ContentType.JSON)
+                .body(requestBody)
+                .when()
+                .post("/charge-sessions")
+                .then()
+                .statusCode(201)
+                .header("Location", not(isEmptyOrNullString()))
+                .extract()
+                .header("Location");
+
+        System.out.println("Created object ID: " + locationHeader);
+    }
+
+    @Test
+    void post_create_chargeSesssion_fail_missing_id() {
+
+        String requestBody = "{"
+                + "\"vehicleId\": \"22\","
+                + "\"chargePointId\": \"\""
+                + "}";
+
+        Response response = RestAssured.given()
+                .contentType(ContentType.JSON)
+                .body(requestBody)
+                .when()
+                .post("/charge-sessions");
+
+        response.then().assertThat()
+                .statusCode(400)
+                .body("application_code", is("RESTAPI-0001"));
+    }
+
+    @Test
+    void put_chargeSesssion_success() {
+
+        List<Vehicle> vehicleList = vehicleRepository.saveAll(List.of(
+                Vehicle.createVehicle("20-WW-11227"),
+                Vehicle.createVehicle("23-D-45893")
+        ));
+
+        List<ChargePoint> chargePointList = chargePointRepository.saveAll(List.of(
+                ChargePoint.createChargePoint("charger-model-x123", 50.0),
+                ChargePoint.createChargePoint("charger-model-PP234", 7.0)
+        ));
+
+        ChargeSession chargeSession = chargeSessionListRepository.save(ChargeSession.createChargeSession(
+                vehicleList.get(0), chargePointList.get(0), new BigDecimal("1.55"), System.currentTimeMillis())
+        );
+
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .when()
+                .put(String.format("/charge-sessions/%s", chargeSession.getId().toString()))
+                .then()
+                .statusCode(204);
+    }
+
+
+
 }
