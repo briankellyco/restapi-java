@@ -70,7 +70,7 @@ Intellij project using JDK 17+. Do following to avoid compilation issues:
 
 The use case is an example of a generic 1:M relationship between different entities stored in a database. 
 
-Almost all business problems can be modelled as a 1:M relationship between different entities.
+Almost all business problems can be modelled as a 1:M relationship.
 
 The use case chosen for this API example is:
 
