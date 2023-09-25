@@ -107,11 +107,9 @@ public class ChargeSessionService {
         Vehicle vehicle = vehicleRepository.findById(vehicleId).orElseThrow(() -> new ApplicationException(ApplicationException.ErrorCode.RECORD_NOT_FOUND_FOR_VEHICLE, new String[] { String.valueOf(vehicleId) }));
 
         /*
-         * Business requirement:
-         * - prevent creation of charge sessions where the new charge session has a startTime > endTime of previous records.
-         *
-         * Assumption:  customers tried to submit their end time when they last disconnected their charger but their app or this API failed
+         * Let's assume customers tried to submit their end time when they last disconnected their charger but their app or this API failed
          * to process the end time (for some unknown reason). As a customer friendly business we do not want to overcharge them for this.
+         * In addition we only want new sessions to be created when the old session has been ended.
          */
         vehicle.getChargeSessions().stream()
                 .filter(chargeSession -> chargeSession.getEndTime() == null)
