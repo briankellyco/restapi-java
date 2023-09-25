@@ -82,7 +82,7 @@ REST endpoints provided are:
 
 1. Create charging record.
 2. Get a charging record by id.
-3. Find all charging records for given vehicle (where "start time" and "end time" fields must be sortable).
+3. Find all charging records for given vehicle.
 
 ## Author
 
