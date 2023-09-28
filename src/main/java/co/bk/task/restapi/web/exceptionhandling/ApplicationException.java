@@ -69,14 +69,9 @@ public class ApplicationException extends RuntimeException {
 
         SAVE_SESSION_INCOMPLETE("RESTAPI-0001", "400 Charge Session could not be saved due to incomplete data."),
         RECORD_NOT_FOUND_FOR_VEHICLE("RESTAPI-0002", "404 Vehicle Record with ID %s not found."),
-
         RECORD_NOT_FOUND_FOR_CHARGE_POINT("RESTAPI-0003", "404 Charge Point with ID %s not found."),
-
-        //UPDATE_DETAILS_INCOMPLETE("RESTAPI-0007", "Record could not be updated due to incomplete data."),
-
-        INVALID_SORT_PARAMETER("RESTAPI-0008", "400 Invalid sort parameter supplied. Only startTime, -startTime, endTime and -endTime supported."),
-
-        RECORD_NOT_FOUND_FOR_CHARGE_SESSION("RESTAPI-0010", "404 Charge Session with id %s not found.");
+        INVALID_SORT_PARAMETER("RESTAPI-0004", "400 Invalid sort parameter supplied. Only startTime, -startTime, endTime and -endTime supported."),
+        RECORD_NOT_FOUND_FOR_CHARGE_SESSION("RESTAPI-0005", "404 Charge Session with id %s not found.");
 
         private String applicationCode;
         private String message = "No description provided";
