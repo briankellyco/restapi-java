@@ -10,7 +10,6 @@ out/
 .*
 # allow .gitignore file
 !/.gitignore
-!/.zappr.yaml
 
 ## node - typescript - javascript
 node_modules/
