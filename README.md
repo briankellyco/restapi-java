@@ -2,7 +2,7 @@
 
 ![stability-badge](https://img.shields.io/badge/stability-Stable-success.svg?style=for-the-badge)
 
-A REST API showcasing a modern Spring Boot / Java 17 microservice. Key features include:
+A REST API showcasing a modern Spring Boot / Java 21 microservice. Key features include:
 
 A minimalistic exception handling strategy:
 
@@ -16,7 +16,7 @@ And:
 * A set of best practice design decisions applied throughout the codebase.
 
 ## Run the application
-1.  Checkout the github repo, import into your IDE and run using Java 17. Instructions for Intellij are below.
+1.  Checkout the github repo, import into your IDE and run using Java 21. Instructions for Intellij are below.
 2.  Verify the test dataset that the application comes with is loaded by inspecting the database.
     The database is accessible at http://localhost:8080/h2-ui 
 3.  Call the REST API using curl or Postman:
@@ -35,9 +35,9 @@ And:
 Spring boot project init:
     https://start.spring.io/
 Choosing:
-    Spring 3.1.3
-    Java 17
-    Gradle 7.3+
+    Spring 3.5.0
+    Java 21
+    Gradle 8.12+
 Adding dependencies:
     Lombok
     Spring Web
@@ -50,17 +50,17 @@ Adding dependencies:
 
 ## Intellij setup to run the application
 ``` 
-Intellij project using JDK 17+. Do following to avoid compilation issues:
+Intellij project using JDK 21+. Do following to avoid compilation issues:
     1.  Create new empty intellij project.
     2.  Import restapi-java module into project.
-    3.  Configure JDK 17+ for the project (see prompt when you open a java file).
+    3.  Configure JDK 21+ for the project (see prompt when you open a java file).
     4.  Enable Lombok plugin in Intellij. Follow guide https://www.baeldung.com/lombok-ide
     4.  Run Spring application. 
     
     Additionally if gradle reports following error:
-        "No matching variant of org.springframework.boot:spring-boot-gradle-plugin:3.1.3 was found"
-    Configure gradle to use JDK 17+ in Intellij:
-        File > Settings >   Build, Execution, Deployment > Build Tools > Gradle > Select project > Set Gradle JVM to 17+
+        "No matching variant of org.springframework.boot:spring-boot-gradle-plugin:3.5.0 was found"
+    Configure gradle to use JDK 21+ in Intellij:
+        File > Settings >   Build, Execution, Deployment > Build Tools > Gradle > Select project > Set Gradle JVM to 21+
     Refresh project dependencies and run application.
 ```
 
@@ -94,4 +94,4 @@ REST endpoints to provide are:
 
 If you found this REST API Java example helpful, please consider showing your support by buying me a coffee.
 
-<a href="https://www.buymeacoffee.com/briankellyco" target="_blank"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=briankellyco&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
+<a href="https://www.buymeacoffee.com/briankellyco" target="_blank"><img src="docs/buy-me-a-coffee.png"></a>
