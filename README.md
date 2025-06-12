@@ -94,4 +94,4 @@ REST endpoints to provide are:
 
 If you found this REST API Java example helpful, please consider showing your support by buying me a coffee.
 
-<a href="https://www.buymeacoffee.com/briankellyco" target="_blank"><img src="docs/buy-me-a-coffee.png"></a>
+<a href="https://www.buymeacoffee.com/briankellyco" target="_blank"><img src="docs/coffee.png"></a>
